@@ -64,9 +64,27 @@ function DetailMenuModal() {
       perPrice : menuInfoList.menuPrice,
       totalPrice: totalPrice
     };
+
+        // 현재 장바구니에 같은 메뉴가 있는지 확인
+        const existingMenuIndex = shoppingBagList.findIndex(item => item.menuName === menuInfoList.menuName);
   
-    dispatch(SetPayListInfo([...shoppingBagList, addMenu]));
-    dispatch(SetMenuDetailModal(false));
+        if (existingMenuIndex !== -1) {
+          const updatedShoppingBagList = shoppingBagList.map((item, index) => {
+            if (index === existingMenuIndex) {
+              return {
+                ...item,
+                quantity: item.quantity + quantity, // 기존 수량에 추가
+                totalPrice: (item.quantity + quantity) * item.perPrice // 총 가격 업데이트
+              };
+            }
+            return item;
+          });
+          dispatch(SetPayListInfo(updatedShoppingBagList));
+        } else {
+          // 장바구니에 같은 메뉴가 없는 경우
+          dispatch(SetPayListInfo([...shoppingBagList, addMenu]));
+        }
+        dispatch(SetMenuDetailModal(false));
   };
 
   useEffect(()=> {

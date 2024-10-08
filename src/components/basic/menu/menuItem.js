@@ -39,9 +39,8 @@ function MenuItem({ name, price, explain, photoUrl }) {
     }
     dispatch(SetMenuInfo(menuInfo));
     dispatch(SetMenuDetailModal(true));
-
   }
-
+  
   return (
     <m.MenuItemBox 
       onClick={openDetailModal}
