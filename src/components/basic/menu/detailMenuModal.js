@@ -26,6 +26,8 @@ function DetailMenuModal() {
   const [totalPrice, setTotalPrice] = useState(formattedPrice);
   const [selectedTemperature, setSelectedTemperature] = useState('');
   const [selectedSize, setSelectedSize] = useState('');
+  const [selectedOptions, setSelectedOptions] = useState([]); //선택한 주문 옵션들
+
 
   const handleTemperatureClick = (temperature) => {
     setSelectedTemperature(selectedTemperature === temperature ? '' : temperature);
@@ -45,15 +47,57 @@ function DetailMenuModal() {
     setQuantity(quantity + 1);
   };
 
+  const calculateTotalPrice = () => {
+    const optionsPrice = selectedOptions.reduce((sum, option) => {
+      return sum + option.optionInfo.reduce((optSum, opt) => optSum + opt.price, 0);
+    }, 0);
+
+    const sizePrice = selectedSize === 'large' ? 500 : 0;
+
+    const totalPrice = (menuInfoList.menuPrice + optionsPrice + sizePrice) * quantity;
+    return totalPrice.toLocaleString('ko-KR');
+  };
+
   const AddCartClick = () => {
+    const options = [];
+
+    // 온도 옵션 추가
+    if (selectedTemperature) {
+      options.push({
+        id: 2, // 예시 ID, 필요에 따라 조정
+        name: "온도",
+        optionInfo: [
+          {
+            id: 2, // 예시 ID, 필요에 따라 조정
+            name: selectedTemperature === 'hot' ? 'HOT' : 'ICE',
+            price: 0, // 추가 비용이 없는 경우
+          },
+        ],
+      });
+    }
+
+    // 사이즈 옵션 추가
+    if (selectedSize) {
+      options.push({
+        id: 1, // 예시 ID, 필요에 따라 조정
+        name: "사이즈",
+        optionInfo: [
+          {
+            id: 1, // 예시 ID, 필요에 따라 조정
+            name: selectedSize === 'small' ? 'Small' : selectedSize === 'middle' ? 'Regular' : 'Large',
+            price: selectedSize === 'large' ? 500 : 0, 
+          },
+        ],
+      });
+    }
+
     const addMenu = {
       id: Math.floor(Math.random() * 10000),
       name: menuInfoList.menuName,
       quantity: quantity,
       price: menuInfoList.menuPrice,
-      totalPrice: totalPrice,
-      selectedTemperature,
-      selectedSize,
+      totalPrice: calculateTotalPrice(),
+      options: [...selectedOptions, ...options], // 선택된 옵션 추가
     };
 
     const existingMenuIndex = shoppingBagList.findIndex(item => item.menuName === menuInfoList.menuName);
@@ -64,7 +108,9 @@ function DetailMenuModal() {
           return {
             ...item,
             quantity: item.quantity + quantity,
-            totalPrice: (item.quantity + quantity) * item.price,
+            totalPrice: (item.quantity + quantity) * item.price + addMenu.options.reduce((sum, option) => {
+              return sum + option.optionInfo.reduce((optSum, opt) => optSum + opt.price, 0);
+            }, 0), // 기존 총 가격에 옵션 가격 추가
           };
         }
         return item;
@@ -77,9 +123,8 @@ function DetailMenuModal() {
   };
 
   useEffect(() => {
-    const totalPrice = quantity * menuInfoList.menuPrice;
-    setTotalPrice(totalPrice);
-  }, [quantity]);
+    setTotalPrice(calculateTotalPrice());
+  }, [quantity, selectedOptions, selectedTemperature, selectedSize]);
 
   return (
     <div>
@@ -173,7 +218,10 @@ function DetailMenuModal() {
       </md.DetailMenuContainer>
       {isDetailOptionModal && (
         <md.ModalTopBackgroundContainer>
-          <DetailOptionModal setIsDetailOptionModal={setIsDetailOptionModal} />
+          <DetailOptionModal 
+            setIsDetailOptionModal={setIsDetailOptionModal} 
+            setSelectedOptions={setSelectedOptions} // 옵션 상태 전달
+          />
         </md.ModalTopBackgroundContainer>
       )}
     </div>
