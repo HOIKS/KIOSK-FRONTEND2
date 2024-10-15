@@ -55,7 +55,7 @@ function DetailMenuModal() {
     const sizePrice = selectedSize === 'large' ? 500 : 0;
 
     const totalPrice = (menuInfoList.menuPrice + optionsPrice + sizePrice) * quantity;
-    return totalPrice.toLocaleString('ko-KR');
+    return totalPrice;
   };
 
   const AddCartClick = () => {
@@ -109,8 +109,8 @@ function DetailMenuModal() {
             ...item,
             quantity: item.quantity + quantity,
             totalPrice: (item.quantity + quantity) * item.price + addMenu.options.reduce((sum, option) => {
-              return sum + option.optionInfo.reduce((optSum, opt) => optSum + opt.price, 0);
-            }, 0), // 기존 총 가격에 옵션 가격 추가
+              return (sum + option.optionInfo.reduce((optSum, opt) => optSum + opt.price, 0));
+            }, 0).toLocaleString('ko-KR'), // 기존 총 가격에 옵션 가격 추가
           };
         }
         return item;

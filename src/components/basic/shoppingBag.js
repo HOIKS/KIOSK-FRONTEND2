@@ -4,7 +4,7 @@ import { SetPayListInfo, SetTotalCount, SetTotalPrice } from "../../redux/kioskA
 import delete_img from "../..//assets/imgs/delete.png";
 import decrease_btn from "../../assets/imgs/decrease_btn.png";
 import increase_btn from "../../assets/imgs/increase_btn.png";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 function ShoppingBag() {
   const dispatch = useDispatch();
@@ -14,10 +14,11 @@ function ShoppingBag() {
     const updatedList = [...shoppingBagList];
     if (updatedList[index].quantity > 1) {
       updatedList[index].quantity--;
-      updatedList[index].totalPrice = updatedList[index].perPrice * updatedList[index].quantity;
+      updatedList[index].totalPrice = updatedList[index].price * updatedList[index].quantity; // 숫자로 계산
 
-      const totalQuantity = shoppingBagList.reduce((acc, item) => acc + item.quantity, 0);
-      const totalPrice = shoppingBagList.reduce((acc, item) => acc + item.totalPrice, 0);
+      const totalQuantity = updatedList.reduce((acc, item) => acc + item.quantity, 0);
+      const totalPrice = updatedList.reduce((acc, item) => acc + item.totalPrice, 0); // 숫자로 계산
+      console.log(totalPrice);
       dispatch(SetTotalPrice(totalPrice));
       dispatch(SetTotalCount(totalQuantity));
       dispatch(SetPayListInfo(updatedList));
@@ -28,10 +29,11 @@ function ShoppingBag() {
     const updatedList = [...shoppingBagList];
     if (updatedList[index].quantity >= 1) {
       updatedList[index].quantity++;
-      updatedList[index].totalPrice = updatedList[index].perPrice * updatedList[index].quantity;
+      updatedList[index].totalPrice = updatedList[index].price * updatedList[index].quantity; // 숫자로 계산
 
-      const totalQuantity = shoppingBagList.reduce((acc, item) => acc + item.quantity, 0);
-      const totalPrice = shoppingBagList.reduce((acc, item) => acc + item.totalPrice, 0);
+      const totalQuantity = updatedList.reduce((acc, item) => acc + item.quantity, 0);
+      const totalPrice = updatedList.reduce((acc, item) => acc + item.totalPrice, 0); // 숫자로 계산
+      console.log(totalPrice);
       dispatch(SetTotalPrice(totalPrice));
       dispatch(SetTotalCount(totalQuantity));
       dispatch(SetPayListInfo(updatedList));
@@ -43,9 +45,10 @@ function ShoppingBag() {
     updatedList.splice(index, 1);
     dispatch(SetPayListInfo(updatedList));
   };
-  useEffect(()=> {
 
-  }, [])
+  useEffect(() => {
+    // 초기화 또는 추가 작업이 필요할 경우 여기에 작성
+  }, []);
 
   return (
     <m.SmallShoppingBag>
