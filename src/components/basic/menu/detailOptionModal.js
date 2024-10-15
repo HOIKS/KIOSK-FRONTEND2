@@ -39,7 +39,7 @@ const DetailOptionModal = ({setIsDetailOptionModal}) => {
       <div style={{display:'flex',  justifyContent:'start', alignItems:'center'}}>
         <div 
           className={`shot-option light ${selectedShot === 'light' ? 'active' : ''}`}
-          onClick={() => handleShotClick('light')}
+          onClick={() => handleShotClick('light')} 
         >
           <img src={Light_drink} alt="연하게"/>
           <h1>연하게</h1>

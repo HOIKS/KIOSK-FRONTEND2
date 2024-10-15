@@ -5,7 +5,7 @@ import { SetMenuDetailModal, SetMenuInfo } from '../../../redux/kioskAction';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-function MenuItem({ name, price, explain, photoUrl }) {
+function MenuItem({ name, price, explain, photoUrl, options }) {
   const dispatch = useDispatch();
   const [imageSrc, setImageSrc] = useState(gray_color_bg); // 기본 이미지로 초기화
 
@@ -35,7 +35,8 @@ function MenuItem({ name, price, explain, photoUrl }) {
       menuName : name,
       menuPrice : price,
       menuExplain : explain,
-      menuPhotoUrl : imageSrc
+      menuPhotoUrl : imageSrc,
+      menuOption : options
     }
     dispatch(SetMenuInfo(menuInfo));
     dispatch(SetMenuDetailModal(true));
