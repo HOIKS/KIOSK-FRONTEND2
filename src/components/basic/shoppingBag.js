@@ -46,10 +46,6 @@ function ShoppingBag() {
     dispatch(SetPayListInfo(updatedList));
   };
 
-  useEffect(() => {
-    // 초기화 또는 추가 작업이 필요할 경우 여기에 작성
-  }, []);
-
   return (
     <m.SmallShoppingBag>
       {shoppingBagList.map((item, index) => (

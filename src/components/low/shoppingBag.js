@@ -43,16 +43,14 @@ function ShoppingBag() {
     updatedList.splice(index, 1);
     dispatch(SetPayListInfo(updatedList));
   };
-  useEffect(()=> {
 
-  }, [])
 
   return (
     <m.SmallShoppingBag>
       {shoppingBagList.map((item, index) => (
         <m.SmallShoppingItem key={index}>
           <div className="menu-info">
-            <span className="menu-name">{item.menuName}</span>
+            <span className="menu-name">{item.name}</span>
             <div className="quantity-info">
               <img className="updown-btn" src={decrease_btn} onClick={() => handleQuantityDecrement(index)} alt="감소" />
               <span className="quantity">{item.quantity}</span>

@@ -21,11 +21,6 @@ function MenuCheckModal() {
     return date_string; // 형식화된 문자열 반환
   };
 
-  const generateRandomKey = () => {
-    return '주문번호_' + Math.floor(1000 + Math.random() * 9000); // 랜덤 키 생성
-  };
-
-
   const selectHere = () => {
     const orderId = uuidv4(); // 주문 ID
     const orderDateTime = formatDateTime(new Date()); // 현재 날짜와 시간을 포맷팅
