@@ -12,25 +12,26 @@ function KioskStart() {
 
   const moveToMain = () => {
     setLoading(true); // 로딩 시작
-    axios.get(`${axios.defaults.additionalBaseURL}/inference`)
-      .then(response => {
-        console.log(response.data);
-        if (response.data.position === 'NORM' && response.data.age >= '50') {
-          navigate("/text");
-        } else if (response.data.position === 'NORM') {
-          navigate("/basic");
-        } else if (response.data.position === 'LOW') {
-          navigate("/low");
-        } else {
-          navigate("/basic");
-        }
-      })
-      .catch(error => {
-        console.error(error);
-      })
-      .finally(() => {
-        setLoading(false); // 로딩 종료
-      });
+    navigate("/basic");
+    // axios.get(`${axios.defaults.additionalBaseURL}/inference`)
+    //   .then(response => {
+    //     console.log(response.data);
+    //     if (response.data.position === 'NORM' && response.data.age >= '50') {
+    //       navigate("/text");
+    //     } else if (response.data.position === 'NORM') {
+    //       navigate("/basic");
+    //     } else if (response.data.position === 'LOW') {
+    //       navigate("/low");
+    //     } else {
+    //       navigate("/basic");
+    //     }
+    //   })
+    //   .catch(error => {
+    //     console.error(error);
+    //   })
+    //   .finally(() => {
+    //     setLoading(false); // 로딩 종료
+    //   });
   };
 
   return (

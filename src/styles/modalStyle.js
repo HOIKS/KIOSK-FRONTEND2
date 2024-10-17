@@ -123,7 +123,7 @@ export const DetailMenuContainer = styled.div`
     }
   }
   .drink-recipe-Btn {
-    margin-top : 13rem;
+    margin-top : 5rem;
     margin-left : auto;
     display : flex;
     align-items : center;
