@@ -1,6 +1,6 @@
 import ShoppingBag from "../../components/text/shoppingBag";
 import MenuCategory from "../../components/text/menu/menuCategory";
-import LanguageSelect from "../../components/languageSelect";
+import LanguageSelect from "../../components/text/languageSelect";
 import * as main from "../../styles/text/mainPageTextStyle";
 import * as m from "../../styles/text/menuPageTextStyle";
 import * as md from "../../styles/modalStyle";
@@ -13,7 +13,7 @@ import CardPaymentModal from "../../components/text/cardPaymentModal";
 import { useDispatch, useSelector } from "react-redux";
 import { SetPayListInfo, SetTotalCount, SetTotalMenuModal, SetTotalPrice } from "../../redux/kioskAction";
 import ReceiptModal from "../../components/text/receiptModal";
-import ScreenSelect from "../../components/screenSelect";
+import ScreenSelect from "../../components/text/screenSelect";
 
 
 function TextVersionMenuSelect() {

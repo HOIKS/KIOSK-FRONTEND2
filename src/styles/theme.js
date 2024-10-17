@@ -1,5 +1,6 @@
 export const theme = {
   colors : {
+    // light Mode
     colorBg: '#FDFDFD',
     colorMain: '#000000',
     black : '#08162B',
@@ -13,6 +14,10 @@ export const theme = {
     gray4 : '#ADADAD',
     gray5 : '#7F7F7F',
     gray6 :  '#BBBBBB',
+    // Dark Mode
+    primaryMain : '#FA5F18',
+    primaryLight : '#FFD4B9',
+    primaryDark : '#842A00'
   }
 }
 

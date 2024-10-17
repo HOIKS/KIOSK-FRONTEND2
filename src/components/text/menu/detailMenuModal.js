@@ -1,14 +1,4 @@
 import * as md from "../../../styles/text/modalTextStyle";
-import hot_drink from '../../../assets/imgs/hot_drink.png'
-import hot_drink_click from '../../../assets/imgs/hot_drink_click.png'
-import ice_drink from '../../../assets/imgs/ice_drink.png'
-import ice_drink_click from '../../../assets/imgs/ice_drink_click.png'
-import small_cup from '../../../assets/imgs/small_cup.png'
-import small_cup_click from '../../../assets/imgs/small_cup_click.png'
-import middle_cup from '../../../assets/imgs/middle_cup.png'
-import middle_cup_click from '../../../assets/imgs/middle_cup_click.png'
-import big_cup from '../../../assets/imgs/big_cup.png'
-import big_cup_click from '../../../assets/imgs/big_cup_click.png'
 import right_arrow from '../../../assets/imgs/arrow-right.png'
 import DetailOptionModal from "./detailOptionModal";
 import { useEffect, useState } from "react";

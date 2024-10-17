@@ -1,4 +1,4 @@
-import * as md from  "../../../styles/modalStyle"
+import * as md from  "../../../styles/text/modalTextStyle"
 import One_shot from "../../../assets/imgs/one_shot.png"
 import Two_shot from "../../../assets/imgs/two_shot.png"
 import Light_drink from "../../../assets/imgs/light_drink.png"
@@ -41,7 +41,6 @@ const DetailOptionModal = ({setIsDetailOptionModal}) => {
           className={`shot-option light ${selectedShot === 'light' ? 'active' : ''}`}
           onClick={() => handleShotClick('light')}
         >
-          <img src={Light_drink} alt="연하게"/>
           <h1>연하게</h1>
           <h3>+ 0원</h3>
         </div>
@@ -49,7 +48,6 @@ const DetailOptionModal = ({setIsDetailOptionModal}) => {
           className={`shot-option one-shot ${selectedShot === 'one-shot' ? 'active' : ''}`}
           onClick={() => handleShotClick('one-shot')}
         >
-          <img src={One_shot} alt="1샷 추가"/>
           <h1>샷 추가</h1>
           <h3>+ 500원</h3>
         </div>
@@ -57,7 +55,6 @@ const DetailOptionModal = ({setIsDetailOptionModal}) => {
           className={`shot-option two-shot ${selectedShot === 'two-shot' ? 'active' : ''}`}
           onClick={() => handleShotClick('two-shot')}
         >
-          <img src={Two_shot} alt="2샷 추가"/>
           <h1>2샷 추가</h1>
           <h3>+ 1000원</h3>
         </div>
@@ -68,7 +65,6 @@ const DetailOptionModal = ({setIsDetailOptionModal}) => {
           className={`syrup-option add-syrup ${selectedSyrup === 'add-syrup' ? 'active' : ''}`}
           onClick={() => handleSyrupClick('add-syrup')}
         >
-          <img src={dark_blank_img} alt="2샷 추가"/>
           <h1>시럽 추가</h1>
           <h3>+ 200원</h3>
         </div>
@@ -76,7 +72,6 @@ const DetailOptionModal = ({setIsDetailOptionModal}) => {
           className={`syrup-option light-syrup ${selectedSyrup === 'light-syrup' ? 'active' : ''}`}
           onClick={() => handleSyrupClick('light-syrup')}
         >
-          <img src={dark_blank_img} alt="2샷 추가"/>
           <h1>저당 스테비아 추가</h1>
           <h3>+ 600원</h3>
         </div>

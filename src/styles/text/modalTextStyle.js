@@ -32,7 +32,8 @@ export const DetailMenuContainer = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(255, 255, 255, 1);
+  background-color: ${props => props.theme.colors.colorMain};
+  color: ${props => props.theme.colors.colorBg};
   width: 86rem;
   height: 130rem;
   padding : 2.6rem 3rem;
@@ -57,7 +58,7 @@ export const DetailMenuContainer = styled.div`
       width : 80rem;
       h1 {
         font-family : 'Pretendard-ExtraBold';
-        color : ${props => props.theme.colors.blue1};
+        color : ${props => props.theme.colors.primaryMain};
         font-size : 4.8rem;
       }
       p {
@@ -72,7 +73,7 @@ export const DetailMenuContainer = styled.div`
           font-size : 3rem;
           height : 3rem;
           margin : 0 4rem;
-          color : ${props => props.theme.colors.blue1};
+          color : ${props => props.theme.colors.primaryMain};
           font-family : 'Pretendard-SemiBold';
         }
       }
@@ -87,12 +88,12 @@ export const DetailMenuContainer = styled.div`
         font-size : 2.3rem;
         border : none;
         border-radius : 2rem;
-        background-color : ${props => props.theme.colors.blue1};
+        background-color : ${props => props.theme.colors.primaryMain};
         color : ${props => props.theme.colors.colorBg};
       }
     }
   }
-  hr{border: 0.1rem solid ${props => props.theme.colors.blue0}}
+  hr{border: 0.1rem solid ${props => props.theme.colors.primaryLight}}
   .drink-option {
     width : 23rem;
     height : 9rem;
@@ -104,14 +105,13 @@ export const DetailMenuContainer = styled.div`
     margin : 0 3rem 4rem 0;
     border : none;
     border-radius : 1.5rem;
-    background-color : ${props => props.theme.colors.gray1};
+    background-color : ${props => props.theme.colors.gray5};
+    color : ${props => props.theme.colors.colorBg};
     font-size : 4.8rem;
     font-family : 'Pretendard-Bold';
     &.active {
-      background-color : ${props => props.theme.colors.blue1};
+      background-color : ${props => props.theme.colors.primaryMain};
       color : ${props => props.theme.colors.colorBg};
-
-
     }
   }
   .drink-recipe-Btn {
@@ -123,12 +123,12 @@ export const DetailMenuContainer = styled.div`
     width : 35.7rem;
     height : 6.7rem;
     padding : 0 0.5rem;
-    border : 0.456rem solid ${props => props.theme.colors.blue1};
-    color : ${props => props.theme.colors.blue1};
+    border : 0.456rem solid ${props => props.theme.colors.colorBg};
+    color : ${props => props.theme.colors.colorBg};
     border-radius : 10rem;
     font-size : 3.42rem;
     font-family : 'Pretendard-SemiBold';
-    background-color : ${props => props.theme.colors.colorBg};
+    background-color : ${props => props.theme.colors.colorMain};
     img {
       width : 4rem;
       height : 4rem;
@@ -141,7 +141,7 @@ export const DetailMenuContainer = styled.div`
     p {
       font-family : 'Pretendard-Bold';
       display : inline-block;
-      color : ${props => props.theme.colors.blue1};
+      color : ${props => props.theme.colors.primaryMain};
       width : 20rem;
       text-align : right;
       margin : 0 2rem 0 0;
@@ -158,10 +158,11 @@ export const DetailMenuContainer = styled.div`
       font-size : 3.9rem;
       font-family : 'Pretendard-Bold';
       border-radius : 1.5rem;
-      background-color : ${props => props.theme.colors.gray1};
+      background-color : ${props => props.theme.colors.gray5};
+      color : ${props => props.theme.colors.colorBg};
       &.order {
-        background-color : ${props => props.theme.colors.blue1};
         color : ${props => props.theme.colors.colorBg};
+        background-color : ${props => props.theme.colors.primaryMain};
       }
     }
   }
@@ -174,7 +175,8 @@ export const DetailOptionContainer = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(255, 255, 255, 1);
+  background-color : ${props => props.theme.colors.colorMain};
+  color : ${props => props.theme.colors.colorBg};
   width: 86rem;
   height: 87.5rem;
   padding : 2.6rem 3rem;
@@ -190,21 +192,18 @@ export const DetailOptionContainer = styled.div`
     }
   }
   &.active {
-    border : 0.1rem solid ${props => props.theme.colors.blue1};
+    border : 0.1rem solid ${props => props.theme.colors.primaryMain};
   }
   .shot-option {
     width : 22.3rem;
-    height : 22.3rem;
+    height : 12.3rem;
     display : flex;
     flex-direction : column;
     justify-content : center;
     align-items : center;
     margin : 0 2rem 0 0;
     border-radius : 2rem;
-    background-color : ${props => props.theme.colors.gray1};
-    img{
-      height : 7.7rem;
-    }
+    background-color : ${props => props.theme.colors.gray5};
     h1 {
       font-family : 'Pretendard-SemiBold';
       font-size : 3rem;
@@ -213,43 +212,41 @@ export const DetailOptionContainer = styled.div`
     h3 {
       font-family : 'Pretendard-SemiBold';
       font-size : 3rem;
-      margin-top : 0.5rem;
-      color : ${props => props.theme.colors.blue1}
+      color : ${props => props.theme.colors.primaryLight}
     }
     &.active {
-      border : 0.5rem solid ${props => props.theme.colors.blue1};
+      background-color : ${props => props.theme.colors.primaryMain};
+      h3 {
+        color : ${props => props.theme.colors.colorBg}
+      }
     }
   }
   .syrup-option {
-    width : 22.3rem;
-    height : 22.3rem;
+    width : 24.3rem;
+    height : 12.3rem;
     display : flex;
     flex-direction : column;
     justify-content : center;
     align-items : center;
     margin : 0 2rem 0 0;
     border-radius : 2rem;
-    background-color : ${props => props.theme.colors.gray1};
-
-    img{
-      width : 20.3rem;
-      height : 11.6rem;
-      border-radius : 1rem;
-    }
+    background-color : ${props => props.theme.colors.gray5};
     h1 {
       font-family : 'Pretendard-SemiBold';
-      font-size : 2.5rem;
-      margin : 1.8rem 0 0.5rem 0;
+      font-size : 3rem;
+      margin : 1.8rem 0 0.6rem 0;
     }
     h3 {
       font-family : 'Pretendard-SemiBold';
       font-size : 3rem;
-      color : ${props => props.theme.colors.blue1}
+      color : ${props => props.theme.colors.primaryLight}
     }
     &.active {
-      border : 0.5rem solid ${props => props.theme.colors.blue1};
+      background-color : ${props => props.theme.colors.primaryMain};
+      h3 {
+        color : ${props => props.theme.colors.colorBg}
+      }
     }
-
   }
   .btnBox {
     display : flex;
@@ -264,7 +261,7 @@ export const DetailOptionContainer = styled.div`
       font-family : 'Pretendard-Bold';
       background-color : ${props => props.theme.colors.gray1};
       &.addOption {
-        background-color : ${props => props.theme.colors.blue1};
+        background-color : ${props => props.theme.colors.primaryMain};
         color : ${props => props.theme.colors.colorBg};        
       }
     }
@@ -278,7 +275,8 @@ export const MenuCheckContainer = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(255, 255, 255, 1);
+  background-color: ${props => props.theme.colors.colorMain}; 
+  color : ${props => props.theme.colors.colorBg};              
   width: 86rem;
   height: 130rem;
   padding : 2.6rem;
@@ -296,10 +294,10 @@ export const MenuCheckContainer = styled.div`
       font-family : 'Pretendard-SemiBold';
       font-size : 3.6rem;
       margin : 0 0 1rem 0;
-      color: ${props => props.theme.colors.blue2}
+      color: ${props => props.theme.colors.gray5}
     }
   }
-  hr{border: 0.1rem solid ${props => props.theme.colors.blue0}}
+  hr{border: 0.1rem solid ${props => props.theme.colors.primaryLight}}
   .infoContainer {
     display : flex;
     align-items : center;
@@ -311,8 +309,8 @@ export const MenuCheckContainer = styled.div`
       justify-content:space-between;
       p{
         text-align : center;
-        background-color: ${props => props.theme.colors.blue1};
-        color: ${props => props.theme.colors.colorBg};
+        background-color: ${props => props.theme.colors.primaryMain};
+        color: ${props => props.theme.colors.color};
         border-radius : 1rem;
         margin : 0 2rem;
         padding : 0 5rem;
@@ -324,7 +322,7 @@ export const MenuCheckContainer = styled.div`
       p{
         text-align : right;
         font-size : 4rem;
-        color: ${props => props.theme.colors.blue1};
+        color: ${props => props.theme.colors.primaryMain};
         margin : 0 1.5rem 0 8rem;
       }
     }
@@ -348,13 +346,13 @@ export const MenuCheckContainer = styled.div`
       }
       &.here{
         width : 31.4rem;
-        background-color : ${props => props.theme.colors.blue1};
+        background-color : ${props => props.theme.colors.primaryMain};
         color : ${props => props.theme.colors.colorBg};
         cursor : pointer;
       }
       &.togo{
         width : 31.4rem;
-        background-color : ${props => props.theme.colors.blue0};
+        background-color : ${props => props.theme.colors.primaryLight};
         cursor : pointer;
       }
     }
@@ -368,7 +366,8 @@ export const PaymentSelectContainer = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(255, 255, 255, 1);
+  background-color: ${props => props.theme.colors.colorMain};
+  color : ${props => props.theme.colors.colorBg};
   width: 86rem;
   height: 130rem;
   padding : 2.6rem;
@@ -400,8 +399,9 @@ export const PaymentSelectContainer = styled.div`
     justify-content : center;
     align-items : center;
     margin : 0 2rem 5rem 0;
-    background-color : ${props => props.theme.colors.colorBg};
-    border : 0.2rem solid ${props => props.theme.colors.gray1};
+    background-color : ${props => props.theme.colors.colorMain};
+    color : ${props => props.theme.colors.colorBg};
+    border : 0.2rem solid ${props => props.theme.colors.gray5};
     border-radius : 1.5rem;
     font-size : 3rem;
     img {
@@ -411,7 +411,7 @@ export const PaymentSelectContainer = styled.div`
       margin : 0 0 1rem 0;
     }
     &.active {
-      border : 0.4rem solid ${props => props.theme.colors.blue1};
+      border : 0.4rem solid ${props => props.theme.colors.primaryMain};
     }
   }
   .payment-option {
@@ -422,8 +422,9 @@ export const PaymentSelectContainer = styled.div`
     justify-content : center;
     align-items : center;
     margin : 0 2rem 0 0;
-    background-color : ${props => props.theme.colors.colorBg};
-    border : 0.2rem solid ${props => props.theme.colors.gray1};
+    background-color : ${props => props.theme.colors.colorMain};
+    color : ${props => props.theme.colors.colorBg};
+    border : 0.2rem solid ${props => props.theme.colors.gray5};
     border-radius : 1.5rem;
     font-size : 3rem;
     font-family : 'Pretendard-SemiBold';
@@ -435,7 +436,7 @@ export const PaymentSelectContainer = styled.div`
   }
   hr{
     margin : 60rem 0 0 0;
-    border: 0.1rem solid ${props => props.theme.colors.blue0};
+    border: 0.1rem solid ${props => props.theme.colors.primaryLight};
   }
   .infoContainer {
     display : flex;
@@ -449,7 +450,7 @@ export const PaymentSelectContainer = styled.div`
       justify-content:space-between;
       p{
         text-align : center;
-        background-color: ${props => props.theme.colors.blue1};
+        background-color: ${props => props.theme.colors.primaryMain};
         color: ${props => props.theme.colors.colorBg};
         border-radius : 1rem;
         margin : 0 2rem;
@@ -462,7 +463,7 @@ export const PaymentSelectContainer = styled.div`
       p{
         text-align : right;
         font-size : 3.2rem;
-        color: ${props => props.theme.colors.blue1};
+        color: ${props => props.theme.colors.primaryMain};
         margin : 0 1.5rem 0 8rem;
       }
     }
@@ -476,7 +477,8 @@ export const CardpayContainer = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(255, 255, 255, 1);
+  background-color : ${props => props.theme.colors.colorMain};
+  color : ${props => props.theme.colors.colorBg};
   width: 86rem;
   height: 80rem;
   padding : 4rem;
@@ -488,7 +490,7 @@ export const CardpayContainer = styled.div`
     font-family : 'Pretendard-SemiBold';
     font-size : 4.8rem;
   }
-  hr{border: 0.1rem solid ${props => props.theme.colors.blue0}}
+  hr{border: 0.1rem solid ${props => props.theme.colors.primaryLight}}
   .infoContainer {
     display : flex;
     align-items : center;
@@ -500,7 +502,7 @@ export const CardpayContainer = styled.div`
       justify-content:space-between;
       p{
         text-align : center;
-        background-color: ${props => props.theme.colors.blue1};
+        background-color: ${props => props.theme.colors.primaryMain};
         color: ${props => props.theme.colors.colorBg};
         border-radius : 1rem;
         margin : 0 2rem;
@@ -513,7 +515,7 @@ export const CardpayContainer = styled.div`
       p{
         text-align : right;
         font-size : 3.2rem;
-        color: ${props => props.theme.colors.blue1};
+        color: ${props => props.theme.colors.primaryMain};
         margin : 0 1.5rem 0 8rem;
       }
     }
@@ -526,16 +528,18 @@ export const CardpayContainer = styled.div`
     border-radius : 1rem;
     &.cancel {
       width : 16rem;
+      background-color : ${props => props.theme.colors.gray5};
+      color : ${props => props.theme.colors.colorBg};
     }
     &.pay-approval {
       width : 57rem;
-      background-color : ${props => props.theme.colors.blue1};
+      background-color : ${props => props.theme.colors.primaryMain};
       color : ${props => props.theme.colors.colorBg};
 
     }
   }
   .imgBox {
-    background-color : ${props => props.theme.colors.gray1};
+    background-color : ${props => props.theme.colors.gray5};
     height : 40rem;
     display : flex;
     align-items : center;
@@ -555,7 +559,8 @@ export const ReceiptModalContainer = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(255, 255, 255, 1);
+  background-color : ${props => props.theme.colors.colorMain};
+  color : ${props => props.theme.colors.colorBg};
   width: 86rem;
   height: 50rem;
   padding : 2rem;
@@ -583,8 +588,10 @@ export const ReceiptModalContainer = styled.div`
       letter-spacing : 0.15rem;
       border : none;
       border-radius : 1rem;
+      background-color : ${props => props.theme.colors.gray5};
+      color : ${props => props.theme.colors.colorBg};
       &.print {
-        background-color : ${props => props.theme.colors.blue1};
+        background-color : ${props => props.theme.colors.primaryMain};
         color : ${props => props.theme.colors.colorBg};
       }
     }

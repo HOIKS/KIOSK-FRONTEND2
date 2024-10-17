@@ -7,7 +7,7 @@ export const KioskMainContainer = styled.div`
     flex-direction : column;
     justify-content : space-between;
     align-items : center;
-    background-color : ${props => props.theme.colors.colorBg};
+    background-color : ${props => props.theme.colors.colorMain};
     h1 {
       font-size : 10rem;
     }
@@ -25,7 +25,7 @@ export const startBtnContainer = styled.div `
       width : 86.904rem;
       height : 49.92rem;
       font-size : 12rem;
-      background : ${props => props.theme.colors.blue1};
+      background : ${props => props.theme.colors.primaryMain};
       color : ${props => props.theme.colors.colorBg};
       border : none;
       border-radius : 3rem;
@@ -53,7 +53,7 @@ export const ScreenBox = styled.div`
     width: 15.9rem;
     height: 4.8rem;
     color: ${props => props.theme.colors.colorBg};
-    background-color: ${props => props.theme.colors.gray2};
+    background-color: ${props => props.theme.colors.gray5};
     font-size: 2.5rem;
     font-family : 'Pretendard-Medium';
     margin: 0 0.5rem;
@@ -61,7 +61,7 @@ export const ScreenBox = styled.div`
     border-radius: 5rem;
 
     &.active {
-      background-color: ${props => props.theme.colors.blue1};
+      background-color: ${props => props.theme.colors.primaryMain};
     }
   }
 `;
@@ -77,7 +77,7 @@ export const languageBox = styled.div`
     width: 14.2rem;
     height: 4.8rem;
     color: ${props => props.theme.colors.colorBg};
-    background-color: ${props => props.theme.colors.gray2};
+    background-color: ${props => props.theme.colors.gray5};
     font-size: 2.5rem;
     font-family : 'Pretendard-Medium';
     margin: 0 0.5rem;
@@ -85,7 +85,7 @@ export const languageBox = styled.div`
     border-radius: 5rem;
 
     &.active {
-      background-color: ${props => props.theme.colors.blue1};
+      background-color: ${props => props.theme.colors.primaryMain};
     }
   }
 `;
