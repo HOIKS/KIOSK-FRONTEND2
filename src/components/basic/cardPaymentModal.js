@@ -2,16 +2,27 @@ import * as md from "../../styles/modalStyle"
 import card_pay from "../../assets/imgs/card_pay.png"
 import { useDispatch, useSelector } from "react-redux"
 import { SetCardPayModal, SetPaymentModal, SetReceiptModal } from "../../redux/kioskAction";
+import axios from "axios";
 
 const CardPaymentModal = () => {
   const dispatch = useDispatch();
   let totalMenuCount = useSelector((state) => state.totalMenuCount);
   let totalPrice = useSelector((state) => state.totalPrice);
+  const shoppingBagList = useSelector((state) => state.shoppingBagList);
 
 
   const moveToReceipt = () => {
-    dispatch(SetCardPayModal(false));
-    dispatch(SetReceiptModal(true));
+    axios.post('/kiosk/order', shoppingBagList)
+    .then(response => {
+      console.log(response.data);
+      dispatch(SetCardPayModal(false));
+      dispatch(SetReceiptModal(true));
+    })
+    .catch(error => {
+      console.error(error);
+    });
+
+
   }
   const moveToBack = () => {
     dispatch(SetCardPayModal(false));
