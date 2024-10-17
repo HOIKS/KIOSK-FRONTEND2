@@ -83,6 +83,7 @@ function MenuCategory() {
               price={item.price}
               explain={item.info}
               photoUrl={item.photoUrl}
+              options={item.option} // 옵션 추가
             />
           ))}
       </m.MenuItemContainer>

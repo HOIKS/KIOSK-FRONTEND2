@@ -5,12 +5,53 @@ import Light_drink from "../../../assets/imgs/light_drink.png"
 import dark_blank_img from "../../../assets/imgs/dark_gray_bg.jpeg"
 import { useState } from "react"
 
-const DetailOptionModal = ({setIsDetailOptionModal}) => {
+const DetailOptionModal = ({setIsDetailOptionModal, setSelectedOptions}) => {
   const [selectedShot, setSelectedShot] = useState('');
   const [selectedSyrup, setSelectedSyrup] = useState('');
 
 
   const addDrinkOption = () => {
+    const options = [];   //기존 배열
+    let optionTotalPrice = 0; // 옵션 가격을 합산할 변수
+
+
+    // 샷 옵션 추가
+    if (selectedShot) {
+      const shotPrice = selectedShot === 'one-shot' ? 500 : selectedShot === 'two-shot' ? 1000 : 0;
+      optionTotalPrice += shotPrice; // 샷 가격 추가
+      options.push({
+        id: 3, // 예시 ID
+        name: "샷",
+        optionInfo: [
+          {
+            id: selectedShot === 'light' ? 1 : selectedShot === 'one-shot' ? 2 : 3,
+            name: selectedShot === 'light' ? '연하게' : selectedShot === 'one-shot' ? '샷 추가' : '2샷 추가',
+            price: shotPrice
+          },
+        ],
+      });
+    }
+
+    // 시럽 옵션 추가
+    if (selectedSyrup) {
+      const syrupPrice = selectedSyrup === 'add-syrup' ? 200 : 600;
+      optionTotalPrice += syrupPrice; // 시럽 가격 추가
+      options.push({
+        id: 4, // 예시 ID
+        name: "시럽",
+        optionInfo: [
+          {
+            id: selectedSyrup === 'add-syrup' ? 1 : 2,
+            name: selectedSyrup === 'add-syrup' ? '시럽 추가' : '저당 스테비아 추가',
+            price: syrupPrice,
+          },
+        ],
+      });
+    }
+
+    // 선택된 옵션과 총 가격을 부모 컴포넌트로 전달
+    console.log(optionTotalPrice);
+    setSelectedOptions(options, optionTotalPrice);
     setIsDetailOptionModal(false);
   }
 
