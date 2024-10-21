@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import * as md from "../../styles/modalStyle";
+import * as md from "../../styles/text/modalTextStyle";
 import { SetPayListInfo, SetReceiptModal, SetTotalCount, SetTotalPrice } from "../../redux/kioskAction";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";

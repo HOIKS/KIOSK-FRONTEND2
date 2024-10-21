@@ -4,15 +4,70 @@ import PaymentSelectModal from "../paymentSelectModal";
 import { useDispatch, useSelector } from "react-redux";
 import { SetPaymentModal, SetTotalMenuModal } from "../../../redux/kioskAction";
 import TotalMenuList from "../totalMenuList";
+import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 
 function MenuCheckModal() {
   const dispatch = useDispatch();
   let totalMenuCount = useSelector((state) => state.totalMenuCount);
-  let totalPrice = useSelector((state) => state.totalPrice);
+  let TotalPrice = useSelector((state) => state.totalPrice);
+  let items = useSelector((state) => state.shoppingBagList);
 
+  let [orderData, setOrderData] = useState({}); // 장바구니 리스트 가져오기
   
-  const selectPackage = () => {
+  const formatDateTime = (date) => {
+    const date_string = date.toISOString()
+    return date_string; // 형식화된 문자열 반환
+  };
+
+  const selectHere = () => {
+    const orderId = uuidv4(); // 주문 ID
+    const orderDateTime = formatDateTime(new Date()); // 현재 날짜와 시간을 포맷팅
+    const takeOut = false;  // 포장 여부
+    const totalPrice = TotalPrice;
+    const paymentMethod = "card";    
+    const extraPrice = "0";
+
+    // 주문 날짜와 시간을 포함한 객체 생성
+    const orderData = {
+      items,
+      orderId,
+      orderDateTime,
+      takeOut,
+      totalPrice,
+      paymentMethod,
+      extraPrice
+    };
+    
+    setOrderData(orderData);
+    localStorage.setItem(orderId, JSON.stringify(orderData)); // LocalStorage에 저장
+
+    dispatch(SetTotalMenuModal(false));
+    dispatch(SetPaymentModal(true));
+  }
+  const selectToGo = () => {
+    const orderId = uuidv4(); // 주문 ID
+    const orderDateTime = formatDateTime(new Date()); // 현재 날짜와 시간을 포맷팅
+    const takeOut = true;  // 포장 여부
+    const totalPrice = TotalPrice;
+    const paymentMethod = "card";
+    const extraPrice = "0";
+
+    // 주문 날짜와 시간을 포함한 객체 생성
+    const orderData = {
+      items,
+      orderId,
+      orderDateTime,
+      takeOut,
+      totalPrice,
+      paymentMethod,
+      extraPrice
+    };
+    
+    setOrderData(orderData);
+    localStorage.setItem(orderId, JSON.stringify(orderData)); // LocalStorage에 저장
+
     dispatch(SetTotalMenuModal(false));
     dispatch(SetPaymentModal(true));
 
@@ -21,6 +76,7 @@ function MenuCheckModal() {
   const backToMenu = () => {
     dispatch(SetTotalMenuModal(false));
   }
+  
     return (
       <div>
         <md.MenuCheckContainer>
@@ -37,7 +93,7 @@ function MenuCheckModal() {
             </div>
             <div className="totalPrice">
               <h3>총 금액</h3>
-              <p>{totalPrice.toLocaleString('ko-KR')}</p>
+              <p>{TotalPrice.toLocaleString('ko-KR')}</p>
               <h3>원</h3>
             </div>
           </div>
@@ -50,13 +106,13 @@ function MenuCheckModal() {
             </button>
             <button 
               className="here"
-              onClick={selectPackage}
+              onClick={selectHere}
             >
               매장 식사
             </button>
             <button 
               className="togo"
-              onClick={selectPackage}
+              onClick={selectToGo}
             >
               포장 주문
             </button>

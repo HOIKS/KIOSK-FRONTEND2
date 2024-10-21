@@ -1,5 +1,6 @@
 import * as md from "../../styles/text/modalTextStyle"
-import blank_img from "../../assets/imgs/gray_color_bg.png"
+import KT from "../../assets/imgs/KT.png"
+import CJONE from "../../assets/imgs/CJONE.png"
 import credit_card from "../../assets/imgs/credit-card.png"
 import coupon from "../../assets/imgs/coupon.png"
 import quit_btn from "../../assets/imgs/quit_btn.png"
@@ -57,11 +58,11 @@ const PaymentSelectModal = () => {
         <button 
           className={`discount-option KT ${selectedDiscount === 'KT' ? 'active' : ''}`}
           onClick={() => handleDiscountClick('KT')}
-        ><img src={blank_img} alt="임시"/>KT</button>
+        ><img src={KT} alt="임시"/>KT</button>
         <button 
           className={`discount-option CJONE ${selectedDiscount === 'CJONE' ? 'active' : ''}`}
           onClick={() => handleDiscountClick('CJONE')}
-        ><img src={blank_img} alt="임시"/>CJONE</button>
+        ><img src={CJONE} alt="임시"/>CJONE</button>
       </div>
       <h1 className="payInfo">2. 결제 수단 선택</h1>
       <div style={{display:'flex', alignItems:'center', justifyContent:'start'}}>

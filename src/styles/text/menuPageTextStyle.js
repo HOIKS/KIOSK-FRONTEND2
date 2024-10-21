@@ -7,7 +7,7 @@ export const MenuSelectContainer = styled.div`
   display : flex;
   flex-direction : column;
   justify-content : space-between;
-  background-color : ${props => props.theme.colors.colorBg};
+  background-color : ${props => props.theme.colors.colorMain};
   align-items : center;
   .go_to_credit {
     width : 100%;
@@ -16,7 +16,7 @@ export const MenuSelectContainer = styled.div`
     justify-content : space-between;
     padding : 2.05rem;
     align-items : center;
-    background-color : ${props => props.theme.colors.gray1};
+    background-color : #373737;
     box-shadow : 0 -35px 50px -10px rgba(0, 0, 0, 0.2);
 
   }
@@ -39,10 +39,11 @@ export const TopCategoryBtn = styled.button`
   width :  15rem;
   font-size : 3rem;
   font-family : 'Pretendard-SemiBold';
-  background-color : ${props => props.theme.colors.colorBg};
+  background-color : ${props => props.theme.colors.colorMain};
+  color : ${props => props.theme.colors.colorBg};
   border : none;
   &.active {
-  border-bottom : 0.5rem solid ${props => props.theme.colors.blue1}
+  border-bottom : 0.5rem solid ${props => props.theme.colors.primaryMain}
   }
 `
 // 하위 메뉴 카테고리 UI 
@@ -66,9 +67,9 @@ export const SubCategoryBtn = styled.button`
   font-family : 'Pretendard-SemiBold';
   border : none;
   background-color:transparent;
-  color : ${props => props.theme.colors.blue1};
+  color : ${props => props.theme.colors.colorBg};
   &.active {
-    background-color : ${props => props.theme.colors.blue1};
+    background-color : ${props => props.theme.colors.primaryMain};
     color : ${props => props.theme.colors.colorBg};
     border-radius : 100rem;
   }
@@ -114,10 +115,12 @@ export const MenuItemBox = styled.div`
     margin-bottom : 0.7rem;
     font-size : 3.765rem;
     font-family : 'Pretendard-SemiBold';
-  }
-  p {
-    font-size : 3.138rem;
-    font-family : 'Pretendard-SemiBold';
+    color : ${props => props.theme.colors.colorBg};
+    }
+    p {
+      font-size : 3.138rem;
+      font-family : 'Pretendard-SemiBold';
+      color : ${props => props.theme.colors.colorBg};
   }
 `
 
@@ -126,7 +129,7 @@ export const SmallShoppingBag = styled.div`
   width : 65.6rem;
   height : 35.9rem;
   border-radius : 1rem;
-  background-color : ${props => props.theme.colors.colorBg};
+  background-color : ${props => props.theme.colors.colorMain};
   padding : 1.5rem;
 `
 // 장바구니 짧은 ITEM UI
@@ -138,7 +141,8 @@ export const SmallShoppingItem = styled.div`
   justify-content : space-between;
   font-size : 2.5rem;
   font-family : 'Pretendard-Medium';
-  border-bottom : 0.1rem solid ${props => props.theme.colors.blue0};
+  border-bottom : 0.1rem solid ${props => props.theme.colors.primaryLight};
+  color : ${props => props.theme.colors.colorBg};
   .menu-info {
     width : 41.5rem;
     display : flex; 
@@ -167,7 +171,7 @@ export const BigShoppingBag = styled.div`
   width : 80.8rem;
   height : 80rem;
   border-radius : 1rem;
-  background-color : ${props => props.theme.colors.colorBg};
+  background-color : ${props => props.theme.colors.colorMain};
 `
 // 장바구니 큰 ITEM UI
 export const BigShoppingItem = styled.div`
@@ -183,7 +187,7 @@ export const BigShoppingItem = styled.div`
   margin : 0 0 1rem 0;
 
   &:nth-child(odd) {
-    background-color : rgba(186, 214, 255, 0.2);
+    background-color : ${props => props.theme.colors.primaryMain};
   }
 
   .menu-info {
@@ -207,7 +211,7 @@ export const CurrentBagContainer = styled.div`
   display : flex;
   flex-direction : column;
   justify-content : space-between;
-
+  color : ${props => props.theme.colors.colorBg};
   h3 {
     font-size : 2.8rem;
     font-family : 'Pretendard-Regular';
@@ -222,9 +226,9 @@ export const CurrentBagContainer = styled.div`
     font-family : 'Pretendard-SemiBold';
     margin : 0 2rem;
     border-radius : 1rem;
-    color : ${props => props.theme.colors.blue1};
+    color : ${props => props.theme.colors.primaryMain};
     &.selected-menu {
-      background-color : ${props => props.theme.colors.blue1};
+      background-color : ${props => props.theme.colors.primaryMain};
       color : ${props => props.theme.colors.colorBg};
     } 
   }
@@ -235,7 +239,7 @@ export const CurrentBagContainer = styled.div`
     border-radius : 1rem;
     &.payBtn {
       height : 15.2rem;
-      background-color : ${props => props.theme.colors.blue1};
+      background-color : ${props => props.theme.colors.primaryMain};
       font-size : 3.7rem;
       font-family : 'Pretendard-Bold';
       letter-spacing : 0.2rem;
@@ -243,7 +247,7 @@ export const CurrentBagContainer = styled.div`
     &.backBtn {
       height : 8.6rem;
       font-size : 3rem;
-      background-color : ${props => props.theme.colors.gray6};
+      background-color : ${props => props.theme.colors.gray5};
       font-family : 'Pretendard-SemiBold';
       color : ${props => props.theme.colors.colorMain};
     }
