@@ -3,6 +3,8 @@ import card_pay from "../../assets/imgs/card_pay.png"
 import { useDispatch, useSelector } from "react-redux"
 import { SetCardPayModal, SetPaymentModal, SetReceiptModal } from "../../redux/kioskAction";
 import axios from "axios";
+import seventh_step from "../../assets/audios/9_카드결제.mp3"
+import { useEffect, useState } from "react";
 
 
 const CardPaymentModal = () => {
@@ -11,10 +13,29 @@ const CardPaymentModal = () => {
   let totalPrice = useSelector((state) => state.totalPrice);
   const shoppingBagList = useSelector((state) => state.shoppingBagList);
 
+  const [audio] = useState(new Audio(seventh_step)); // 오디오 객체 생성
+
+  const playAudio = () => {
+    audio.play().catch((error) => {
+      console.error("오디오 재생 실패:", error);
+    });
+  };
+
+  const stopAudio = () => {
+    audio.pause(); // catch 제거
+    audio.currentTime = 0; // 오디오 재생 위치를 처음으로 되돌림
+  }
+  
+  useEffect(()=> {
+    playAudio();
+  },[]);
+
+
   const moveToReceipt = () => {
     axios.post('/kiosk/order', shoppingBagList)
     .then(response => {
       console.log(response.data);
+      stopAudio();
       dispatch(SetCardPayModal(false));
       dispatch(SetReceiptModal(true));
     })
@@ -25,6 +46,8 @@ const CardPaymentModal = () => {
 
   }
   const moveToBack = () => {
+    stopAudio();
+
     dispatch(SetCardPayModal(false));
     dispatch(SetPaymentModal(true));
   }
