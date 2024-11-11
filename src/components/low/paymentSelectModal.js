@@ -4,10 +4,12 @@ import CJONE from "../../assets/imgs/CJONE.png"
 import credit_card from "../../assets/imgs/credit-card.png"
 import coupon from "../../assets/imgs/coupon.png"
 import quit_btn from "../../assets/imgs/quit_btn.png"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import CardPaymentModal from "./cardPaymentModal"
 import { useDispatch, useSelector } from "react-redux"
 import { SetCardPayModal, SetPaymentModal } from "../../redux/kioskAction"
+import sixth_step from "../../assets/audios/8_결제방식선택.mp3"
+
 
 const PaymentSelectModal = () => {
   const dispatch = useDispatch();
@@ -18,6 +20,24 @@ const PaymentSelectModal = () => {
 
   const [selectedDiscount, setSelectedDiscount] = useState('');
   const [isCouponUse, setIsCouponUse] = useState('');
+
+  const [audio] = useState(new Audio(sixth_step)); // 오디오 객체 생성
+
+  const playAudio = () => {
+    audio.play().catch((error) => {
+      console.error("오디오 재생 실패:", error);
+    });
+  };
+
+  const stopAudio = () => {
+    audio.pause(); // catch 제거
+    audio.currentTime = 0; // 오디오 재생 위치를 처음으로 되돌림
+  }
+  
+  useEffect(()=> {
+    playAudio();
+  },[]);
+
 
   const handleDiscountClick = (discount) => {
     setSelectedDiscount(discount);
@@ -39,9 +59,11 @@ const PaymentSelectModal = () => {
   const clickCardPay = () => {
     dispatch(SetPaymentModal(false));
     dispatch(SetCardPayModal(true));
+    stopAudio();
   };
   const moveToBack = () => {
     dispatch(SetPaymentModal(false));
+    stopAudio();
   };
 
 

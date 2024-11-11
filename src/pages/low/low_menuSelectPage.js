@@ -14,6 +14,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { SetPayListInfo, SetTotalCount, SetTotalMenuModal, SetTotalPrice } from "../../redux/kioskAction";
 import ReceiptModal from "../../components/low/receiptModal";
 import ScreenSelect from "../../components/screenSelect";
+import third_step from "../../assets/audios/3_메뉴선택.mp3"
+
 
 
 function LowVersionMenuSelect() {
@@ -29,7 +31,24 @@ function LowVersionMenuSelect() {
   let totalPrice = useSelector((state) => state.totalPrice);
   const shoppingBagList = useSelector((state) => state.shoppingBagList);
 
+  const [audio] = useState(new Audio(third_step)); // 오디오 객체 생성
+
+  const playAudio = () => {
+    audio.play().catch((error) => {
+      console.error("오디오 재생 실패:", error);
+    });
+  };
+
+  const stopAudio = () => {
+    audio.pause(); // catch 제거
+    audio.currentTime = 0; // 오디오 재생 위치를 처음으로 되돌림
+  }
+  
+
   useEffect(() => {
+    stopAudio();
+    playAudio(); // 버튼 클릭 시 오디오 재생
+
     const updateTotalInfo = () => {
       const totalQuantity = shoppingBagList.reduce((acc, item) => acc + item.quantity, 0);
       const totalPriceValue = shoppingBagList.reduce((acc, item) => acc + item.totalPrice, 0);
@@ -42,6 +61,7 @@ function LowVersionMenuSelect() {
   
 
   const moveToCheckMenu = () => {
+    stopAudio();
     dispatch(SetTotalMenuModal(true));
   }
 
@@ -49,6 +69,7 @@ function LowVersionMenuSelect() {
     dispatch(SetPayListInfo([]));
     dispatch(SetTotalPrice(0));
     dispatch(SetTotalCount(0));
+    stopAudio();
     navigate('/low');
 
   }

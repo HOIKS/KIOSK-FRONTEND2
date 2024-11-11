@@ -5,15 +5,31 @@ import { v4 as uuidv4 } from "uuid";
 import { useDispatch, useSelector } from "react-redux";
 import { SetPaymentModal, SetTotalMenuModal } from "../../../redux/kioskAction";
 import TotalMenuList from "../totalMenuList";
-import { useState } from "react";
-
-
+import { useEffect, useState } from "react";
+import fifth_step from "../../../assets/audios/7_주문확인.mp3"
 
 function MenuCheckModal() {
   const dispatch = useDispatch();
   let totalMenuCount = useSelector((state) => state.totalMenuCount);
   let TotalPrice = useSelector((state) => state.totalPrice);
   let items = useSelector((state) => state.shoppingBagList);
+  const [audio] = useState(new Audio(fifth_step)); // 오디오 객체 생성
+
+  const playAudio = () => {
+    audio.play().catch((error) => {
+      console.error("오디오 재생 실패:", error);
+    });
+  };
+
+  const stopAudio = () => {
+    audio.pause(); // catch 제거
+    audio.currentTime = 0; // 오디오 재생 위치를 처음으로 되돌림
+  }
+  
+  useEffect(()=> {
+    playAudio();
+  },[]);
+
 
   let [orderData, setOrderData] = useState({}); // 장바구니 리스트 가져오기
   
@@ -23,6 +39,7 @@ function MenuCheckModal() {
   };
 
   const selectHere = () => {
+    stopAudio();
     const orderId = uuidv4(); // 주문 ID
     const orderDateTime = formatDateTime(new Date()); // 현재 날짜와 시간을 포맷팅
     const takeOut = false;  // 포장 여부
@@ -48,6 +65,7 @@ function MenuCheckModal() {
     dispatch(SetPaymentModal(true));
   }
   const selectToGo = () => {
+    stopAudio();
     const orderId = uuidv4(); // 주문 ID
     const orderDateTime = formatDateTime(new Date()); // 현재 날짜와 시간을 포맷팅
     const takeOut = true;  // 포장 여부
@@ -75,6 +93,7 @@ function MenuCheckModal() {
   }
 
   const backToMenu = () => {
+    stopAudio();
     dispatch(SetTotalMenuModal(false));
   }
   return (
