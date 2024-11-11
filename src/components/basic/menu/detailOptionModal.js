@@ -3,14 +3,34 @@ import One_shot from "../../../assets/imgs/one_shot.png"
 import Two_shot from "../../../assets/imgs/two_shot.png"
 import Light_drink from "../../../assets/imgs/light_drink.png"
 import dark_blank_img from "../../../assets/imgs/dark_gray_bg.jpeg"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import fourth_step from "../../../assets/audios/5_제조방식선택.mp3"
+
 
 const DetailOptionModal = ({setIsDetailOptionModal, setSelectedOptions}) => {
   const [selectedShot, setSelectedShot] = useState('');
   const [selectedSyrup, setSelectedSyrup] = useState('');
 
+  const [audio] = useState(new Audio(fourth_step)); // 오디오 객체 생성
+
+  const playAudio = () => {
+    audio.play().catch((error) => {
+      console.error("오디오 재생 실패:", error);
+    });
+  };
+
+  const stopAudio = () => {
+    audio.pause(); // catch 제거
+    audio.currentTime = 0; // 오디오 재생 위치를 처음으로 되돌림
+  }
+  
+  useEffect(()=> {
+    playAudio();
+  },[]);
+
 
   const addDrinkOption = () => {
+    stopAudio();
     const options = [];   //기존 배열
     let optionTotalPrice = 0; // 옵션 가격을 합산할 변수
 
@@ -125,7 +145,10 @@ const DetailOptionModal = ({setIsDetailOptionModal, setSelectedOptions}) => {
       <div className="btnBox">
         <button 
           className="cancel"
-          onClick={() => {setIsDetailOptionModal(false);}}
+          onClick={() => {
+            stopAudio();
+            setIsDetailOptionModal(false);
+          }}
         >취소</button>
         <button 
           className="addOption"
