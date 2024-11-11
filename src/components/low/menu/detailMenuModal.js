@@ -214,7 +214,9 @@ function DetailMenuModal() {
           <div className="btnBox">
             <button 
               className="cancel" 
-              onClick={() => dispatch(SetMenuDetailModal(false))}
+              onClick={() => {
+                stopAudio();
+                dispatch(SetMenuDetailModal(false))}}
               >취소</button>
             <button 
               className="order"
