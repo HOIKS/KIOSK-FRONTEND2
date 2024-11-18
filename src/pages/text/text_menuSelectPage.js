@@ -46,8 +46,8 @@ function TextVersionMenuSelect() {
 
 
   useEffect(() => {
-    stopAudio();
-    playAudio(); // 버튼 클릭 시 오디오 재생
+    // stopAudio();
+    // playAudio(); // 버튼 클릭 시 오디오 재생
     const updateTotalInfo = () => {
       const totalQuantity = shoppingBagList.reduce((acc, item) => acc + item.quantity, 0);
       const totalPriceValue = shoppingBagList.reduce((acc, item) => acc + item.totalPrice, 0);
