@@ -43,7 +43,7 @@ const ReceiptModal = () => {
     dispatch(SetTotalCount(0));
     stopAudio();
     dispatch(SetReceiptModal(false));
-    navigate('/');
+    navigate('/photo');
   }
   
   useEffect(() => {
