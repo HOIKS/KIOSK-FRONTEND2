@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import * as p from "../styles/photoStyle";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';  // Import axios
 
 function PhotoPrint() {
   const navigate = useNavigate();
-  const [count, setCount] = useState(10);
+  const [count, setCount] = useState(5);
   const [isActive, setIsActive] = useState(true);
   const [isBlinking, setIsBlinking] = useState(false); // 반짝임 상태 추가
+  const [photoUrl, setPhotoUrl] = useState(''); // 사진 URL 상태 추가
 
   useEffect(() => {
     let timer;
@@ -20,6 +22,7 @@ function PhotoPrint() {
             clearInterval(timer);
             setIsActive(false);
             setIsBlinking(true); // 카운트가 0이 되면 반짝임 시작
+            fetchPhoto(); // Call the API when the countdown reaches zero
             return 0;
           }
         });
@@ -29,13 +32,28 @@ function PhotoPrint() {
     return () => clearInterval(timer);
   }, [isActive]);
 
-  const handleRetry = () => {
-    setCount(10);
-    setIsActive(true);
-    setIsBlinking(false); // 반짝임 초기화
+  const fetchPhoto = async () => {
+    try {
+      const response = await axios.get('http://raymondcty.duckdns.org:6133/shot', {
+        responseType: 'blob' // 응답을 Blob으로 설정
+      });
+
+      const imageUrl = URL.createObjectURL(response.data); // Blob을 URL로 변환
+      setPhotoUrl(imageUrl); // 사진 URL을 상태에 저장
+    } catch (error) {
+      console.error("Error fetching photo:", error);
+    }
   };
 
-  const handlePrint = () => {
+  const handleRetry = () => {
+    setCount(5);
+    setIsActive(true);
+    setIsBlinking(false); // 반짝임 초기화
+    setPhotoUrl(''); // 사진 URL 초기화
+  };
+
+  const handlePrint = async () => {
+    await fetchPhoto(); // Call the API when the print button is clicked
     navigate('/');
   };
 
@@ -43,7 +61,11 @@ function PhotoPrint() {
     <p.PhotoLayout>
       <h1>HOIKS PHOTO</h1>
       <div className={`photo ${isBlinking ? 'blink' : ''}`}>
-        <h3>{count}</h3>
+        {photoUrl ? ( // 사진 URL이 있으면 이미지를 표시
+          <img src={photoUrl} alt="Captured" />
+        ) : (
+          <h3>{count}</h3> // 카운트가 남아있으면 카운트 표시
+        )}
       </div>
       <p.ButtonLayout>
         <button className="again" onClick={handleRetry}>재촬영</button>
