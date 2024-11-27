@@ -9,6 +9,7 @@ import LowVersionMenuSelect from './pages/low/low_menuSelectPage';
 import TextVersionKioskMain from './pages/text/text_kioskMain';
 import TextVersionMenuSelect from './pages/text/text_menuSelectPage';
 import KioskStart from './pages/kioskStart';
+import PhotoPrint from './pages/photoPage';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path='/low/menu' element={<LowVersionMenuSelect />} />
             <Route path='/text' element={<TextVersionKioskMain />} />
             <Route path='/text/menu' element={<TextVersionMenuSelect />} />
+            <Route path='/photo' element={<PhotoPrint />} />
           </Routes>
       </ThemeProvider> 
     </BrowserRouter>

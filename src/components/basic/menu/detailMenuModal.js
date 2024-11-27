@@ -14,6 +14,8 @@ import DetailOptionModal from "./detailOptionModal";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { SetMenuDetailModal, SetPayListInfo } from "../../../redux/kioskAction";
+import third_step from "../../../assets/audios/4_세부사항선택.mp3"
+
 
 function DetailMenuModal() {
   const dispatch = useDispatch();
@@ -27,6 +29,23 @@ function DetailMenuModal() {
   const [selectedTemperature, setSelectedTemperature] = useState('');
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedOptions, setSelectedOptions] = useState([]); //선택한 주문 옵션들
+
+  const [audio] = useState(new Audio(third_step)); // 오디오 객체 생성
+
+  const playAudio = () => {
+    audio.play().catch((error) => {
+      console.error("오디오 재생 실패:", error);
+    });
+  };
+
+  const stopAudio = () => {
+    audio.pause(); // catch 제거
+    audio.currentTime = 0; // 오디오 재생 위치를 처음으로 되돌림
+  }
+  
+  useEffect(()=> {
+    playAudio();
+  },[]);
 
 
   const handleTemperatureClick = (temperature) => {
@@ -59,6 +78,7 @@ function DetailMenuModal() {
   };
 
   const AddCartClick = () => {
+    stopAudio();
     const options = [];
 
     // 온도 옵션 추가
@@ -199,7 +219,10 @@ function DetailMenuModal() {
         
         <button
           className="drink-recipe-Btn"
-          onClick={() => { setIsDetailOptionModal(true) }}
+          onClick={() => { 
+            stopAudio();
+            setIsDetailOptionModal(true);
+          }}
         >
           음료 제조 방식 선택 <img src={right_arrow} />
         </button>
@@ -208,7 +231,10 @@ function DetailMenuModal() {
         <div className="btnBox">
           <button
             className="cancel"
-            onClick={() => dispatch(SetMenuDetailModal(false))}
+            onClick={() => {
+              stopAudio();
+              dispatch(SetMenuDetailModal(false))
+            }}
           >취소</button>
           <button
             className="order"

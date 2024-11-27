@@ -50,6 +50,11 @@ export const DetailMenuContainer = styled.div`
     height : 25rem;
     align-items : center;
     justify-content : space-between;
+    img {
+      width : 16.2rem;
+      height : 21rem;
+      margin : 0 3rem 0 0;
+    }
     .drink-text {
       display : flex;
       flex-direction : column;
@@ -92,6 +97,7 @@ export const DetailMenuContainer = styled.div`
         color : ${props => props.theme.colors.colorBg};
       }
     }
+    
   }
   hr{border: 0.1rem solid ${props => props.theme.colors.primaryLight}}
   .drink-option {

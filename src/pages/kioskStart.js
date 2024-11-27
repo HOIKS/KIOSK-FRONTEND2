@@ -4,12 +4,24 @@ import LanguageSelect from "../components/languageSelect";
 import wow_img from "../assets/imgs/wowImg.png";
 import axios from "axios";
 import ScreenSelect from "../components/screenSelect";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import one_mp3 from "../assets/audios/1_키오스크_시작.mp3"
 
 function KioskStart() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false); // 로딩 상태 관리
+  const [audio] = useState(new Audio(one_mp3)); // 오디오 객체 생성
 
+  const playAudio = () => {
+    audio.play().catch((error) => {
+      console.error("오디오 재생 실패:", error);
+    });
+  };
+
+  const stopAudio = () => {
+    audio.pause(); // catch 제거
+    audio.currentTime = 0; // 오디오 재생 위치를 처음으로 되돌림
+  }
   const moveToMain = () => {
     setLoading(true); // 로딩 시작
     navigate("/basic");
@@ -33,6 +45,10 @@ function KioskStart() {
     //     setLoading(false); // 로딩 종료
     //   });
   };
+  // useEffect(() => {
+  //   playAudio(); // 버튼 클릭 시 오디오 재생
+  // },[])
+
 
   return (
     <m.KioskStartContainer>
